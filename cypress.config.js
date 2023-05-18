@@ -9,6 +9,8 @@ module.exports = defineConfig({
             runMode: 1,
             openMode: 0
         },
+        video: false,
+        defaultCommandTimeout: 4000,
 
         // eslint-disable-next-line
         setupNodeEvents(on, config) {

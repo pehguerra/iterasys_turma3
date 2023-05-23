@@ -1,6 +1,9 @@
 describe('alerta de login', () => {
     
     it('valida o alerta de credencial inválida', () => {
+
+        // faz o spy na hora
+        cy.clock()
         
         cy.intercept('POST', '/api/auth')
             .as('login')
@@ -28,8 +31,13 @@ describe('alerta de login', () => {
 
         // cy.wait(10000)
 
-        cy.getElement('alert', { timeout: 10000 })
-        cy.get('[data-test=alert]')
+        // cy.get('[data-test=alert]', { timeout: 10000 })
+        //     .should('not.exist')
+
+        // adiantar o tempo da nossa aplicação em 10 segundos
+        cy.tick(10000)
+
+        cy.getElement('alert')
             .should('not.exist')
     })
 })

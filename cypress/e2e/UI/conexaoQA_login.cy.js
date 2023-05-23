@@ -8,7 +8,7 @@ describe('página de login', () => {
         cy.visit('/login')
     })
     
-    it('faz o login válido', () => {
+    it('faz o login válido', { tags: ['@login', '@smoke'] }, () => {
         
         // spy na API do login
         cy.intercept('GET', '/api/profile/me')
@@ -38,7 +38,7 @@ describe('página de login', () => {
             .and('contain', 'Usuário Iterasys')
     })
 
-    it('faz o login inválido', () => {
+    it('faz o login inválido', { tags: '@smoke' }, () => {
 
         // spy na API do login
         cy.intercept('POST', '/api/auth')
@@ -67,7 +67,7 @@ describe('página de login', () => {
             .should('have.text', 'Credenciais inválidas')
     })
 
-    it('valida a digitação de um email inválido', () => {
+    it('valida a digitação de um email inválido', { tags: '@login' }, () => {
         
         // preencher o email (inválido)
         cy.getElement(CAMPO_EMAIL)
